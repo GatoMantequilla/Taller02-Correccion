@@ -2,7 +2,7 @@
 Un gestor de personas básico y sencillo, funcional y apto para cualquier uso.
 
 ## Descripción
-Registro es un gestor de personas con opciones básicas y un menú sencillo de utilizar, ahora con nuevas actualizaciones.
+Registro es un gestor de personas con opciones básicas y un menú sencillo de utilizar, ahora con nuevas actualizaciones que aseguran un entendimiento de código más detallado y cercano al usuario.
 
 Clona el repositorio:
 bash

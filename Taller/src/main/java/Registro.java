@@ -4,54 +4,14 @@ import java.util.Scanner;
 class Registro {
     public static void main(String[] args) {
         String[][] registro = crearRegistro();
-        imprimirMenu(); // Hay un ''do'' que no va
-        int opcion = obtenerDecision();
-        if (opcion == 2) {
-            try {
-                int valor = mostrarMayoresDeEdad(registro);
-                System.out.println("Cantidad de personas mayores de edad:" + valor);
-            } catch (NumberFormatException e) {
-                System.out.println("Matriz inexistente");
-            }
-        }
-        else if (opcion == 3) {
-            int menoresDeEdad = 0;
-            int queSera = obtenerUltimoEspacio(registro);
-
-            for (int i = 0; i < queSera; i++) {
-                if (Integer.parseInt(registro[i][2]) < 18) menoresDeEdad++;
-            }
-
-            System.out.println("Hay " + menoresDeEdad + " menores de edad.");
-        } else if(opcion == 4) {
-            int personasTerceraEdad = 0;
-            for (String[] persona : registro) {
-                if (Integer.parseInt(persona[2]) >= 60 && persona[1].equals("casado/a")) {
-                    personasTerceraEdad++;
-                } else if(Integer.parseInt(persona[2]) >= 65 && persona[1].equals("soltero/a")) {
-                    personasTerceraEdad++;
-                }
-            }
-            System.out.println("Hay " + personasTerceraEdad + " personas de tercera edad");
-
-        } else if(opcion == 5) {
-            int casados = 0;
-            int solteros = 0;
-            for(String[] persona : registro) {
-                if(persona[1].equals("casado/a")) {
-                    casados++;
-                } else if(persona[1].equals("soltero/a")) {
-                    solteros++;
-                }
-            }
-
-            System.out.println("Hay " + casados + " casados/as.");
-            System.out.println("Hay " + solteros + " solteros/as.");
-        } else if(opcion == 6) {
-            System.out.println("Programa finalizado");
+        boolean ejecucionMenu = true;
+        while (ejecucionMenu) {
+            imprimirMenu(); // Hay un ''do'' que no va
+            int opcion = obtenerDecision();
+            realizarAcciones(opcion, registro);
+            // Había un } de más en esta línea
         }
     }
-    // Había un } de más en esta línea
 
     public static String[][] crearRegistro() {
         String[][] registro = new String[50][3]; // Originalmente definía una matriz como un double
@@ -66,7 +26,7 @@ class Registro {
                 3) Mostrar la cantidad de personas menores de edad.
                 4) Mostrar la cantidad de personas de tercera edad.
                 5) Mostrar la cantidad de personas según estado civil (Soltero/a - Casado/a).
-                6)Salir.
+                6) Salir.
                 """);
     }
 
@@ -76,10 +36,48 @@ class Registro {
         return opcion;
     }
 
-    public static void segundaOpcion(int opcion, String[][] registro) {
-        if (opcion == 2) {
+    public static void contarMayoresDeEdad(String[][] registro) {
+        try {
             int valor = mostrarMayoresDeEdad(registro);
-            System.out.println("Cantidad de personas mayores de edad:" +valor);
+            System.out.println("Cantidad de personas mayores de edad:" + valor);
+        } catch (NumberFormatException e) {
+            System.out.println("Matriz inexistente");
+        }
+    }
+
+    public static void contarMenoresDeEdad(String[][] registro) {
+        try {
+            int valorMenores = mostrarMenoresDeEdad(registro);
+            System.out.println("Cantidad de personas menores de edad:" + valorMenores);
+        } catch (NumberFormatException e) {
+            System.out.println("Matriz inexistente");
+        }
+    }
+
+    public static void contarTerceraEdad(String[][] registro) {
+        try {
+            int personasTerceraEdad = 0;
+            for (String[] persona : registro) {
+                if (Integer.parseInt(persona[2]) >= 60 && persona[1].equals("casado/a")) {
+                    personasTerceraEdad++;
+                } else if (Integer.parseInt(persona[2]) >= 65 && persona[1].equals("soltero/a")) {
+                    personasTerceraEdad++;
+                }
+            }
+            System.out.println("Hay " + personasTerceraEdad + " personas de tercera edad");
+        } catch (NumberFormatException e) {
+            System.out.println("Matriz inexistente");
+        }
+    }
+
+    public static void contarCasadosYSolteros(String[][] registro) {
+        try {
+            int cantidadCasados = conteoDeCasados(registro);
+            int cantidadSolteros = conteoDeSolteros(registro);
+            System.out.println("Cantidad de casados:" +cantidadCasados);
+            System.out.println("Cantidad de solteros:" +cantidadSolteros);
+        } catch (NumberFormatException e) {
+            System.out.println("Matriz inexistente");
         }
     }
 
@@ -91,6 +89,36 @@ class Registro {
             }
         }
         return mayoresDeEdad;
+    }
+
+    public static int mostrarMenoresDeEdad(String[][] registro) {
+        int menoresDeEdad = 0;
+        for (String[] persona : registro) {
+            if (Integer.parseInt(persona[2]) < 18) {
+                menoresDeEdad++;
+            }
+        }
+        return menoresDeEdad;
+    }
+
+    public static int conteoDeSolteros(String[][] registro) {
+        int solteros = 0;
+        for (String[] persona : registro) {
+            if (persona[1].equals("soltero/a")) {
+                solteros++;
+            }
+        }
+        return solteros;
+    }
+
+    public static int conteoDeCasados(String[][] registro) {
+        int casados = 0;
+        for (String[] persona : registro) {
+            if (persona[1].equals("casado/a")) {
+                casados++;
+            }
+        }
+        return casados;
     }
 
     public static int obtenerUltimoEspacio(String [][] registro) {
@@ -108,5 +136,21 @@ class Registro {
             }
         }
         return 0;
+    }
+
+    public static void realizarAcciones(int opcion, String[][] registro) {
+        if (opcion == 2) {
+            contarMayoresDeEdad(registro);
+        } else if (opcion == 3) {
+            contarMenoresDeEdad(registro);
+        } else if (opcion == 4) {
+            contarTerceraEdad(registro);
+        } else if (opcion == 5) {
+            contarCasadosYSolteros(registro);
+        } else if (opcion == 6) {
+            System.out.println("Programa finalizado");
+        } else {
+            System.out.println("Opción inválida");
+        }
     }
 }
