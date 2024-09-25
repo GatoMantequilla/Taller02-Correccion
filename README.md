@@ -1,4 +1,4 @@
-# Nombre del Proyecto
+# Registro
 Un gestor de personas básico y sencillo, funcional y apto para cualquier uso.
 
 ## Descripción
