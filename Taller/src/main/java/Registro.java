@@ -9,8 +9,7 @@ class Registro {
             imprimirMenu(); // Hay un ''do'' que no va
             int opcion = obtenerDecision();
             realizarAcciones(opcion, registro);
-            // Había un } de más en esta línea
-        }
+        } // Había un } de más en esta línea
     }
 
     public static String[][] crearRegistro() {
@@ -74,8 +73,8 @@ class Registro {
         try {
             int cantidadCasados = conteoDeCasados(registro);
             int cantidadSolteros = conteoDeSolteros(registro);
-            System.out.println("Cantidad de casados:" +cantidadCasados);
-            System.out.println("Cantidad de solteros:" +cantidadSolteros);
+            System.out.println("Cantidad de casados:" + cantidadCasados);
+            System.out.println("Cantidad de solteros:" + cantidadSolteros);
         } catch (NumberFormatException e) {
             System.out.println("Matriz inexistente");
         }
@@ -121,25 +120,79 @@ class Registro {
         return casados;
     }
 
-    public static int obtenerUltimoEspacio(String [][] registro) {
+    public static int obtenerUltimoEspacio(String[][] registro) {
         return registro.length - obtenerVacios(registro);
     }
 
-    public static boolean hayCupo(String [][] registro) {
+    public static boolean hayCupo(String[][] registro) {
         return obtenerVacios(registro) != 0;
     }
 
-    public static int obtenerVacios(String [][] registro) {
-        for(int i = 0; i < registro.length; i++) {
-            if(registro[i][0].equals("")){
+    public static int obtenerVacios(String[][] registro) {
+        for (int i = 0; i < registro.length; i++) {
+            if (registro[i][0] == null) {
                 return registro.length - i;
             }
         }
         return 0;
     }
 
+    public static String recogerRespuesta() {
+        String respuesta = "";
+        try {
+            respuesta = String.valueOf(new Scanner(System.in).next());
+        } catch (InputMismatchException e) {
+            System.out.println("Opción inválida");
+        }
+        return respuesta;
+    }
+
+    public static void agregarPersona(String[][] registro) {
+        if (hayCupo(registro)) {
+            String nombre, estadoCivil, edad;
+            int indiceDisponible = obtenerUltimoEspacio(registro);
+            nombre = recogerNombre();
+            estadoCivil = recogerEstadoCivil();
+            edad = recogerEdad();
+            registrarDatos(registro, indiceDisponible, nombre, estadoCivil, edad);
+
+            System.out.println("Persona agregada.");
+        } else {
+            System.out.println("No hay cupo en el registro");
+        }
+    }
+
+    public static void registrarDatos(String[][] registro, int indiceDisponible, String nombre, String estadoCivil, String edad) {
+        registro[indiceDisponible][0] = nombre;
+        registro[indiceDisponible][1] = estadoCivil;
+        registro[indiceDisponible][2] = edad;
+    }
+
+    public static String recogerNombre() {
+        String nombre;
+        System.out.println("Ingrese el nombre: ");
+        nombre = recogerRespuesta();
+        return nombre;
+    }
+
+    public static String recogerEstadoCivil() {
+        String estadoCivil;
+        System.out.println("Ingrese el estadoCivil: ");
+        estadoCivil = recogerRespuesta();
+        return estadoCivil;
+    }
+
+    public static String recogerEdad() {
+        String edad;
+        System.out.println("Ingrese la edad: ");
+        edad = recogerRespuesta();
+        return edad;
+    }
+
     public static void realizarAcciones(int opcion, String[][] registro) {
-        if (opcion == 2) {
+        if (opcion == 1) {
+            agregarPersona(registro);
+        } else if (opcion == 2) {
             contarMayoresDeEdad(registro);
         } else if (opcion == 3) {
             contarMenoresDeEdad(registro);
