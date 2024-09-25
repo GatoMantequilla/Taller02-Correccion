@@ -4,46 +4,31 @@ Un gestor de personas básico y sencillo, funcional y apto para cualquier uso.
 ## Descripción
 Registro es un gestor de personas con opciones básicas y un menú sencillo de utilizar, ahora con nuevas actualizaciones que aseguran un entendimiento de código más detallado y cercano al usuario.
 
-Clona el repositorio:
-bash
-Copiar código
-git clone https://github.com/usuario/proyecto.git
-Ve al directorio del proyecto:
-bash
-Copiar código
-cd proyecto
-Instala las dependencias:
-bash
-Copiar código
-npm install  # Si usas Node.js
-pip install -r requirements.txt  # Si usas Python
-Uso
-Instrucciones sobre cómo utilizar el proyecto.
+## Uso
 
-bash
-Copiar código
-# Ejemplo de comando para ejecutar el proyecto
-npm start
+- Clonar el repositorio desde https://github.com/GatoMantequilla/Taller02-Correccion.git
+- Abrir el código en un entorno
 
-# O si es una API
-python app.py
-Explica ejemplos de uso, si es necesario, y muestra capturas de pantalla o ejemplos de código.
+## Instrucciones de uso
 
-Características
-Lista las principales funcionalidades del proyecto.
-Menciona cualquier característica única o interesante.
-Contribución
-Si quieres que otros contribuyan, explica cómo pueden hacerlo.
+- Primero, se debe tener instalado algún entorno para poder ejecutar el programa. Se
+recomienda fuertemente el uso de IntelliJ ya que el código Java fue corregido, reestructurado
+y compilado en dicho entorno.
+- Posterior a ello, se debe clonar y abrir el proyecto desde el repositorio alojado en GitHub,
+cuyo enlace fue proporcionado anteriormente.
+- Luego, se debe pulsar el botón ''Ejecutar'' para comenzar a interactuar con el programa y sus distintas funcionalidades.
 
-Haz un fork del repositorio.
-Crea una nueva rama (git checkout -b feature/nueva-caracteristica).
-Realiza los cambios y haz un commit (git commit -m 'Agrega una nueva característica').
-Sube los cambios a tu repositorio (git push origin feature/nueva-caracteristica).
-Crea un Pull Request.
-Licencia
-Este proyecto está licenciado bajo la Licencia MIT - consulta el archivo LICENSE para más detalles.
 
-Autores
-Nombre del Autor - Rol o contribución principal - Perfil de GitHub
-Agradecimientos
-Menciona cualquier recurso, biblioteca o persona que haya ayudado en el desarrollo del proyecto.
+## Características
+
+- El código original fue reescrito durante 2 horas, compactando métodos y subdividiéndolos
+en otros más pequeños y concisos.
+- El nuevo código ahora es más sencillo de interpretar y de manejar, con nombres de variables
+coherentes para facilitar su estudio y manejo.
+
+
+
+## Autores
+
+Daniela Díaz - Editora y testeadora 
+Camilo Cifuentes - Editor y compilador
