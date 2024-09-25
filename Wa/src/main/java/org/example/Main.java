@@ -4,17 +4,21 @@ import java.util.Scanner;
 
 class Registro {
     public static void main(String[] args) {
+    programa();
+    }
+
+    public static void programa(){
         String[][] registro = crearRegistro();
         boolean ejecucionMenu = true;
         while (ejecucionMenu) {
-            imprimirMenu(); // Hay un ''do'' que no va
+            imprimirMenu();
             int opcion = obtenerDecision();
             realizarAcciones(opcion, registro);
-        } // Había un } de más en esta línea
+        }
     }
 
     public static String[][] crearRegistro() {
-        String[][] registro = new String[50][3]; // Originalmente definía una matriz como un double
+        String[][] registro = new String[50][3];
         return registro;
     }
 
@@ -37,12 +41,8 @@ class Registro {
     }
 
     public static void contarMayoresDeEdad(String[][] registro) {
-        try {
-            int valor = mostrarMayoresDeEdad(registro);
-            System.out.println("Cantidad de personas mayores de edad:" + valor);
-        } catch (NumberFormatException e) {
-            System.out.println("Matriz inexistente");
-        }
+        int valor = mostrarMayoresDeEdad(registro);
+        System.out.println("Cantidad de personas mayores de edad:" + valor);
     }
 
     public static void contarMenoresDeEdad(String[][] registro) {
@@ -178,7 +178,7 @@ class Registro {
 
     public static String recogerEstadoCivil() {
         String estadoCivil;
-        System.out.println("Ingrese el estadoCivil: ");
+        System.out.println("Ingrese el estadoCivil (soltero/a - casado/a): ");
         estadoCivil = recogerRespuesta();
         return estadoCivil;
     }
